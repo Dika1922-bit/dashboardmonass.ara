@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MONASS - Kontak Dinas Kesehatan Kota Semarang</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+<style>
+  /* Reset dan font */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f9f4;
+    color: #264d00;
+}
+   /* Header */
+    header {
+      background-color: #4caf50;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+
+  /* Navigasi */
+  nav {
+    background: #a3d97a;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.7rem 0;
+  }
+  nav a {
+    color: #264d00;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  nav a:hover, nav a.active {
+    background-color: #3e7d13;
+    color: white;
+    box-shadow: 0 3px 8px rgba(62,125,19,0.6);
+  }
+
+  /* Kontainer utama */
+  main {
+    max-width: 900px;
+    margin: 2.5rem auto 4rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+    padding: 2rem 3rem;
+  }
+
+  /* Judul */
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1.8rem;
+    border-bottom: 3px solid #4caf50;
+    padding-bottom: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  /* Layout grid untuk info kontak dan peta */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  @media (max-width: 700px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Kotak info kontak */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+  }
+  .contact-info div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .contact-info i {
+    color: #4caf50;
+    font-size: 1.6rem;
+    min-width: 28px;
+  }
+  .contact-info strong {
+    font-weight: 700;
+    color: #3e7d13;
+  }
+  .contact-info p, .contact-info a {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #264d00;
+    text-decoration: none;
+  }
+  .contact-info a:hover {
+    text-decoration: underline;
+  }
+
+  /* Embed peta */
+  iframe {
+    width: 100%;
+    height: 320px;
+    border-radius: 16px;
+    border: 2px solid #4caf50;
+    box-shadow: 0 6px 18px rgba(76, 175, 80, 0.3);
+  }
+</style>
+</head>
+<body>
+
+<header>MONASS</header>
+
+<nav>
+  <a href="index.html">Beranda</a>
+  <a href="daftar-proyek.html">Daftar Proyek</a>
+  <a href="visualisasi.html">Visualisasi</a>
+  <a href="berita.html">Berita</a>
+  <a href="download.html">Download</a>
+  <a href="kontak.html" class="active">Kontak</a>
+</nav>
+
+<main>
+  <h2>Kontak Dinas Kesehatan Kota Semarang</h2>
+  <div class="contact-grid">
+    <section class="contact-info">
+      <div>
+        <i class="fas fa-map-marker-alt"></i>
+        <p><strong>Alamat:</strong> Jl. Pandanaran No.1, Semarang, Jawa Tengah 50134, Indonesia</p>
+      </div>
+      <div>
+        <i class="fas fa-phone"></i>
+        <p><strong>Telepon:</strong> (024) 351-2345</p>
+      </div>
+      <div>
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:info@dinkes.semarangkota.go.id"><strong>Email:</strong> info@dinkes.semarangkota.go.id</a>
+      </div>
+      <div>
+        <i class="fas fa-globe"></i>
+        <a href="https://dinkes.semarangkota.go.id" target="_blank" rel="noopener"><strong>Website:</strong> dinkes.semarangkota.go.id</a>
+      </div>
+      <div>
+        <i class="fas fa-clock"></i>
+        <p><strong>Jam Kerja:</strong> Senin - Jumat, 08:00 - 16:00 WIB</p>
+      </div>
+      <div>
+        <i class="fas fa-user-tie"></i>
+        <p><strong>Kepala Dinas:</strong> Dr. dr. MOCHAMAD ABDUL HAKAM, Sp.PD. FINASHIM</p>
+      </div>
+    </section>
+
+    <section>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.434765169531!2d110.41749031478157!3d-7.004816594949744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708b32b6f50a55%3A0x1f6469199e1c8f67!2sDinas%20Kesehatan%20Kota%20Semarang!5e0!3m2!1sid!2sid!4v1685880536630!5m2!1sid!2sid"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Peta Dinas Kesehatan Kota Semarang"
+      ></iframe>
+    </section>
+  </div>
+</main>
+
+</body>
+</html>

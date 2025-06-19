@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MONASS - Berita</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9fefb;
+      color: #264d00;
+      margin: 0;
+    }
+    header {
+      background-color: #4caf50;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    nav {
+      background: #a3d97a;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 0.5rem 0;
+    }
+    nav a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #264d00;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+    nav a:hover, nav a.active {
+      background-color: #3e7d13;
+      color: white;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    h2 {
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #4caf50;
+      padding-bottom: 0.3rem;
+    }
+    .berita-item {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+    .berita-item h3 {
+      margin: 0 0 0.5rem 0;
+      color: #2e7d32;
+    }
+    .tanggal {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .isi {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+    }
+    .terkait {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #555;
+      background: #eef9e6;
+      padding: 0.5rem;
+      border-left: 4px solid #a5d6a7;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<header>MONASS</header>
+
+<nav>
+  <a href="index.html">Beranda</a>
+  <a href="daftar-proyek.html">Daftar Proyek</a>
+  <a href="visualisasi.html">Visualisasi</a>
+  <a href="berita.html" class="active">Berita</a>
+  <a href="download.html">Download</a>
+  <a href="kontak.html">Kontak</a>
+</nav>
+
+<main>
+  <h2>Berita Terkini Pembangunan Puskesmas</h2>
+  <div id="berita-container">Memuat berita...</div>
+</main>
+
+<!-- PapaParse dari CDN untuk parsing CSV lebih baik -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script>
+  const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQUScyRZ0Nxxxxxxx/pub?output=csv'; // Ganti dengan URL CSV asli Anda
+
+  Papa.parse(CSV_URL, {
+    download: true,
+    header: true,
+    skipEmptyLines: true,
+    complete: function(results) {
+      const berita = results.data;
+      const container = document.getElementById('berita-container');
+      if(berita.length === 0) {
+        container.innerHTML = '<p>Belum ada berita tersedia.</p>';
+        return;
+      }
+      container.innerHTML = berita.map(item => `
+        <div class="berita-item">
+          <div class="tanggal">${item.Tanggal || '-'}</div>
+          <h3>${item.Judul || '-'}</h3>
+          <div class="isi">${item.Isi || '-'}</div>
+          ${item.Terkait ? `<div class="terkait"><strong>Berita Terkait:</strong> ${item.Terkait}</div>` : ''}
+        </div>
+      `).join('');
+    },
+    error: function(err) {
+      document.getElementById('berita-container').innerHTML = '<p>BELUM ADA BERITA SABAR YA :)</p>';
+      console.error('Kesalahan:', err);
+    }
+  });
+</script>
+
+</body>
+</html>

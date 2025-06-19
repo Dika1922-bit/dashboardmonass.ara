@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MONASS - Daftar Proyek</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9fefb;
+      color: #264d00;
+    }
+    header {
+      background-color: #4caf50;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    nav {
+      background: #a3d97a;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 0.5rem 0;
+      box-shadow: inset 0 -2px 0 #fff;
+    }
+    nav a {
+      color: #264d00;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover,
+    nav a.active {
+      background-color: #3e7d13;
+      color: white;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #d9f1c8;
+      min-width: 180px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 1;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+    }
+    .dropdown-content a {
+      color: #264d00;
+      padding: 0.6rem 1rem;
+      display: block;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .dropdown-content a:hover {
+      background-color: #bde396;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .dropdown:hover > a {
+      background-color: #3e7d13;
+      color: white;
+    }
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    h2 {
+      border-bottom: 2px solid #4caf50;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      border: 1px solid #4caf50;
+      padding: 1rem;
+      text-align: left;
+    }
+    th {
+      background-color: #a3d97a;
+      color: #264d00;
+    }
+    tr:nth-child(even) {
+      background-color: #e6f4d9;
+    }
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      th {
+        display: none;
+      }
+      td {
+        position: relative;
+        padding-left: 50%;
+        margin-bottom: 1rem;
+      }
+      td::before {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: bold;
+      }
+      td:nth-of-type(1)::before { content: "OPD/KEGIATAN"; }
+      td:nth-of-type(2)::before { content: "PAGU ANGGARAN"; }
+      td:nth-of-type(3)::before { content: "RENCANA PELAKSANAAN"; }
+      td:nth-of-type(4)::before { content: "KONSULTAN PERENCANA"; }
+      td:nth-of-type(5)::before { content: "KONTRAKTOR"; }
+      td:nth-of-type(6)::before { content: "KONSULTAN PENGAWAS"; }
+      td:nth-of-type(7)::before { content: "TAYANG DI LPSE"; }
+      td:nth-of-type(8)::before { content: "KET"; }
+    }
+  </style>
+</head>
+<body>
+  <header>MONASS</header>
+  <nav>
+    <a href="index.html">Beranda</a>
+    <div class="dropdown">
+      <a href="daftar-proyek.html" class="active">Daftar Proyek ▾</a>
+      <div class="dropdown-content">
+        <a href="proyek-2025.html">Tahun 2025</a>
+        <a href="proyek-2026.html">Tahun 2026</a>
+        <a href="proyek-2027.html">Tahun 2027</a>
+        <a href="proyek-2028.html">Tahun 2028</a>
+        <a href="proyek-2029.html">Tahun 2029</a>
+      </div>
+    </div>
+    <a href="visualisasi.html">Visualisasi</a>
+    <a href="berita.html">Berita</a>
+    <a href="download.html">Download</a>
+    <a href="kontak.html">Kontak</a>
+  </nav>
+
+  <main>
+    <h2>Daftar Proyek Tahun 2025–2029</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>OPD/KEGIATAN</th>
+          <th>PAGU ANGGARAN</th>
+          <th>RENCANA PELAKSANAAN</th>
+          <th>KONSULTAN PERENCANA</th>
+          <th>KONTRAKTOR</th>
+          <th>KONSULTAN PENGAWAS</th>
+          <th>TAYANG DI LPSE</th>
+          <th>KET</th>
+        </tr>
+      </thead>
+      <tbody id="data-tabel">
+        <tr><td colspan="8">Memuat data...</td></tr>
+      </tbody>
+    </table>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script>
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSaRRI_jOcIDb9YUwshEPASmay6rnCSYWO3yPWotEUPfwmvt9s0ynXYfvZTZSE26NUaPa7Xn9IiL_0U/pub?gid=1244754563&single=true&output=csv";
+    const PROXY = "https://api.allorigins.win/raw?url=";
+
+    function formatRupiah(angka) {
+      if (!angka || typeof angka !== "string") return angka;
+      let clean = angka.replace(/Rp|\s|\./g, "").replace(",", ".");
+      const number = parseFloat(clean);
+      if (isNaN(number)) return angka;
+      return number.toLocaleString('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      });
+    }
+
+    fetch(PROXY + encodeURIComponent(CSV_URL))
+      .then(response => {
+        if (!response.ok) throw new Error("Network response not OK");
+        return response.text();
+      })
+      .then(csvText => {
+        const parsed = Papa.parse(csvText, { header: false });
+        const rows = parsed.data;
+        const tbody = document.getElementById("data-tabel");
+        tbody.innerHTML = "";
+
+        for (let i = 1; i < rows.length; i++) {
+          const cols = rows[i];
+          if (cols.length < 8 || cols.every(col => col.trim() === "")) continue;
+
+          const tr = document.createElement("tr");
+          for (let j = 0; j < 8; j++) {
+            const td = document.createElement("td");
+            td.textContent = (j === 1) ? formatRupiah(cols[j]) : cols[j];
+            tr.appendChild(td);
+          }
+          tbody.appendChild(tr);
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching or parsing CSV:", error);
+        const tbody = document.getElementById("data-tabel");
+        tbody.innerHTML = "<tr><td colspan='8'>Gagal memuat data dari Google Sheet.</td></tr>";
+      });
+  </script>
+</body>
+</html>

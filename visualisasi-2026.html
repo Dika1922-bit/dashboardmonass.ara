@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visualisasi 2025 - MONASS</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9fefb;
+      color: #264d00;
+    }
+    header {
+      background-color: #4caf50;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+
+    nav {
+      background: #a3d97a;
+      padding: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      position: relative;
+    }
+
+    nav a {
+      color: #264d00;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background-color: #3e7d13;
+      color: white;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #d9f1c8;
+      min-width: 180px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 1;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+    }
+
+    .dropdown-content a {
+      color: #264d00;
+      padding: 0.6rem 1rem;
+      display: block;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #bde396;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover > a {
+      background-color: #3e7d13;
+      color: white;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+    }
+
+    h2 {
+      border-bottom: 2px solid #4caf50;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1rem;
+    }
+
+    select {
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    #loadingMsg {
+      margin-top: 1rem;
+    }
+
+    canvas {
+      margin-top: 2rem;
+      background-color: white;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>MONASS</header>
+
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="daftar-proyek.html">Daftar Proyek</a>
+
+    <div class="dropdown">
+      <a href="Visualisasi.html" class="active">Visualisasi ▾</a>
+      <div class="dropdown-content">
+        <a href="visualisasi-2025.html">Tahun 2025</a>
+        <a href="visualisasi-2026.html" class="active">Tahun 2026</a>
+        <a href="visualisasi-2027.html">Tahun 2027</a>
+        <a href="visualisasi-2028.html">Tahun 2028</a>
+        <a href="visualisasi-2029.html">Tahun 2029</a>
+      </div>
+    </div>
+
+    <a href="berita.html">Berita</a>
+    <a href="download.html">Download</a>
+    <a href="kontak.html">Kontak</a>
+  </nav>
+
+  <main>
+    <h2>Visualisasi Proyek Tahun 2026</h2>
+    <label for="proyekSelect">Pilih Proyek:</label>
+    <select id="proyekSelect"></select>
+    <div id="loadingMsg">Memuat data...</div>
+    <canvas id="chartBulanan" height="200"></canvas>
+    <canvas id="chartMingguan" height="200"></canvas>
+  </main>
+
+  <script>
+    const CSV_URL = "https://api.allorigins.win/raw?url=" + encodeURIComponent(
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vSaRRI_jOcIDb9YUwshEPASmay6rnCSYWO3yPWotEUPfwmvt9s0ynXYfvZTZSE26NUaPa7Xn9IiL_0U/pub?gid=1747398702&single=true&output=csv"
+    );
+
+    const proyekSelect = document.getElementById("proyekSelect");
+    const loadingMsg = document.getElementById("loadingMsg");
+    const canvasBulanan = document.getElementById("chartBulanan");
+    const canvasMingguan = document.getElementById("chartMingguan");
+    let chartBulanan, chartMingguan;
+
+    const bulanUrut = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+    let allData = [];
+
+    Papa.parse(CSV_URL, {
+      download: true,
+      header: true,
+      complete: function(results) {
+        allData = results.data.filter(row => row.TAHUN === "2026");
+        const proyekList = [...new Set(allData.map(r => r.NAMA_PEMBANGUNAN))];
+        proyekList.forEach(p => {
+          const opt = document.createElement("option");
+          opt.value = p;
+          opt.textContent = p;
+          proyekSelect.appendChild(opt);
+        });
+        proyekSelect.addEventListener("change", renderProyek);
+        renderProyek();
+      }
+    });
+
+    function renderProyek() {
+      loadingMsg.style.display = "block";
+      const namaProyek = proyekSelect.value;
+      const dataProyek = allData.filter(r => r.NAMA_PEMBANGUNAN === namaProyek);
+
+      const bulananRealisasi = {}, bulananRencana = {}, labelM = [], dataMRealisasi = [], dataMRencana = [];
+
+      dataProyek.forEach(row => {
+        const bulan = row.BULAN.trim();
+        const minggu = row.MINGGU;
+        const real = parseFloat(row.REALISASI) || 0;
+        const rencana = parseFloat(row.RENCANA) || 0;
+
+        bulananRealisasi[bulan] = (bulananRealisasi[bulan] || 0) + real;
+        bulananRencana[bulan] = (bulananRencana[bulan] || 0) + rencana;
+
+        labelM.push(`${bulan} - Minggu ${minggu}`);
+        dataMRealisasi.push(real);
+        dataMRencana.push(rencana);
+      });
+
+      const labelB = bulanUrut;
+      const dataBRealisasi = labelB.map(b => bulananRealisasi[b] || 0);
+      const dataBRencana = labelB.map(b => bulananRencana[b] || 0);
+
+      renderChart(canvasBulanan, labelB, dataBRencana, dataBRealisasi, "Rencana", "Realisasi", "#ff9800", "#4caf50", chartBulanan, c => chartBulanan = c);
+      renderChart(canvasMingguan, labelM, dataMRencana, dataMRealisasi, "Rencana", "Realisasi", "#ff9800", "#2196f3", chartMingguan, c => chartMingguan = c);
+
+      loadingMsg.style.display = "none";
+    }
+
+    function renderChart(canvas, labels, dataRencana, dataRealisasi, labelRencana, labelRealisasi, colorRencana, colorRealisasi, chartInstance, setChartFn) {
+      if (chartInstance) chartInstance.destroy();
+      const newChart = new Chart(canvas, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [
+            { label: labelRencana, data: dataRencana, borderColor: colorRencana, backgroundColor: colorRencana + '55', tension: 0.4 },
+            { label: labelRealisasi, data: dataRealisasi, borderColor: colorRealisasi, backgroundColor: colorRealisasi + '55', tension: 0.4 }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { position: 'top' } },
+          scales: {
+            y: { beginAtZero: true, max: 100, title: { display: true, text: "Progress (%)" } },
+            x: { title: { display: true, text: canvas.id === 'chartBulanan' ? 'Bulan' : 'Minggu' } }
+          }
+        }
+      });
+      setChartFn(newChart);
+    }
+  </script>
+</body>
+</html>
