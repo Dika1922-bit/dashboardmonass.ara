@@ -168,7 +168,7 @@
       download: true,
       header: true,
       complete: function(results) {
-        allData = results.data.filter(row => row.TAHUN === "2027");
+        allData = results.data.filter(row => row.TAHUN === "2029");
         const proyekList = [...new Set(allData.map(r => r.NAMA_PEMBANGUNAN))];
         proyekList.forEach(p => {
           const opt = document.createElement("option");

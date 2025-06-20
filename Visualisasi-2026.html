@@ -152,7 +152,7 @@
 
   <script>
     const CSV_URL = "https://api.allorigins.win/raw?url=" + encodeURIComponent(
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vSaRRI_jOcIDb9YUwshEPASmay6rnCSYWO3yPWotEUPfwmvt9s0ynXYfvZTZSE26NUaPa7Xn9IiL_0U/pub?gid=1747398702&single=true&output=csv"
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vSaRRI_jOcIDb9YUwshEPASmay6rnCSYWO3yPWotEUPfwmvt9s0ynXYfvZTZSE26NUaPa7Xn9IiL_0U/pub?gid=126627173&single=true&output=csv"
     );
 
     const proyekSelect = document.getElementById("proyekSelect");
@@ -168,7 +168,7 @@
       download: true,
       header: true,
       complete: function(results) {
-        allData = results.data.filter(row => row.TAHUN === "2026");
+        allData = results.data.filter(row => row.TAHUN === "2029");
         const proyekList = [...new Set(allData.map(r => r.NAMA_PEMBANGUNAN))];
         proyekList.forEach(p => {
           const opt = document.createElement("option");
