@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MONASS - Daftar Proyek</title>
+  <title>MONASS - Proyek OM 2025</title>
   <style>
     * {
       box-sizing: border-box;
@@ -45,6 +45,7 @@
       background-color: #3e7d13;
       color: white;
     }
+
     .dropdown {
       position: relative;
       display: inline-block;
@@ -110,7 +111,6 @@
       background-color: #e6f4d9;
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 </head>
 <body>
   <header>MONASS</header>
@@ -123,7 +123,15 @@
           <a href="proyek-2025.html">Tahun 2025 ▸</a>
           <div class="dropdown-content right">
             <a href="proyek-2025-Program Prioritas.html">Program Prioritas</a>
-            <a href="proyek-2025-Proyek DKK 2025.html">Proyek DKK 2025</a>
+            <div class="dropdown">
+              <a href="proyek-2025-Proyek DKK 2025.html" class="active">Proyek DKK 2025 ▸</a>
+              <div class="dropdown-content right">
+                <a href="proyek-2025-Proyek DKK 2025-pl.html">PL</a>
+                <a href="proyek-2025-Proyek DKK 2025-lelang.html">Lelang</a>
+                <a href="proyek-2025-Proyek DKK 2025-om.html" class="active">OM</a>
+                <a href="proyek-2025-Proyek DKK 2025-ecatalog.html">E-Catalog</a>
+              </div>
+            </div>
             <a href="proyek-2025-Proyek RSD Mijen.html">Proyek RSD Mijen</a>
           </div>
         </div>
@@ -133,14 +141,15 @@
         <a href="proyek-2029.html">Tahun 2029</a>
       </div>
     </div>
+
     <a href="Visualisasi.html">Visualisasi</a>
     <a href="berita.html">Berita</a>
     <a href="download.html">Download</a>
     <a href="kontak.html">Kontak</a>
-    </nav>
+  </nav>
 
   <main>
-    <h2>Daftar Proyek Tahun 2025</h2>
+    <h2>Daftar Proyek DKK Tahun 2025 – Metode Opereted Maintenance (OM)</h2>
     <table id="tabel-proyek">
       <thead>
         <tr>
@@ -158,7 +167,7 @@
   </main>
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 <script>
-const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSaRRI_jOcIDb9YUwshEPASmay6rnCSYWO3yPWotEUPfwmvt9s0ynXYfvZTZSE26NUaPa7Xn9IiL_0U/pub?gid=0&single=true&output=csv";
+const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSaRRI_jOcIDb9YUwshEPASmay6rnCSYWO3yPWotEUPfwmvt9s0ynXYfvZTZSE26NUaPa7Xn9IiL_0U/pub?gid=1346400207&single=true&output=csv";
 const PROXY = "https://api.allorigins.win/raw?url=";
 
 function formatRupiah(angka) {
