@@ -24,15 +24,14 @@
       font-size: 1.8rem;
       font-weight: 700;
       box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-    }
-
+   }
     nav {
       background: #a3d97a;
-      padding: 0.5rem;
       display: flex;
+      justify-content: center;
       flex-wrap: wrap;
       gap: 1rem;
-      justify-content: center;
+      padding: 0.7rem 1rem;
       position: relative;
     }
 
@@ -50,6 +49,31 @@
       background-color: #3e7d13;
       color: white;
     }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    nav a, .dropdown-toggle {
+      text-decoration: none;
+      color: #264d00;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a.active,
+    .dropdown-toggle:hover {
+      background: #3e7d13;
+      color: #fff;
+   }
 
     .dropdown {
       position: relative;
@@ -116,30 +140,59 @@
       padding: 1rem;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
+    /* Responsif */
+    @media (max-width: 600px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+      }
+
+      nav.show .nav-links {
+        display: flex;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .dropdown-content {
+        position: static;
+        box-shadow: none;
+        margin-top: 0.3rem;
+      }
+    }
   </style>
 </head>
 <body>
   <header>MONASS</header>
 
-  <nav>
+<nav>
+  <div class="nav-links">
     <a href="index.html">Beranda</a>
     <a href="daftar-proyek.html">Daftar Proyek</a>
-
     <div class="dropdown">
-      <a href="Visualisasi.html" class="active">Visualisasi ▾</a>
+      <a href="Visualisasi.html" class="active dropdown-toggle">Visualisasi ▾</a>
       <div class="dropdown-content">
         <a href="Visualisasi-2025.html">Tahun 2025</a>
         <a href="Visualisasi-2026.html">Tahun 2026</a>
-        <a href="Visualisasi-2027.html" class="active">Tahun 2027</a>
+        <a href="Visualisasi-2027.html" class="active dropdown-toggle">Tahun 2027</a>
         <a href="Visualisasi-2028.html">Tahun 2028</a>
         <a href="Visualisasi-2029.html">Tahun 2029</a>
       </div>
     </div>
-
     <a href="berita.html">Berita</a>
     <a href="download.html">Download</a>
     <a href="kontak.html">Kontak</a>
-  </nav>
+  </div>
+</nav>
 
   <main>
     <h2>Visualisasi Proyek Tahun 2027</h2>
@@ -152,7 +205,7 @@
 
   <script>
     const CSV_URL = "https://api.allorigins.win/raw?url=" + encodeURIComponent(
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vSaRRI_jOcIDb9YUwshEPASmay6rnCSYWO3yPWotEUPfwmvt9s0ynXYfvZTZSE26NUaPa7Xn9IiL_0U/pub?gid=126627173&single=true&output=csv"
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vSaRRI_jOcIDb9YUwshEPASmay6rnCSYWO3yPWotEUPfwmvt9s0ynXYfvZTZSE26NUaPa7Xn9IiL_0U/pub?gid=1747398702&single=true&output=csv"
     );
 
     const proyekSelect = document.getElementById("proyekSelect");
@@ -168,7 +221,7 @@
       download: true,
       header: true,
       complete: function(results) {
-        allData = results.data.filter(row => row.TAHUN === "2029");
+        allData = results.data.filter(row => row.TAHUN === "2025");
         const proyekList = [...new Set(allData.map(r => r.NAMA_PEMBANGUNAN))];
         proyekList.forEach(p => {
           const opt = document.createElement("option");
