@@ -5,30 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MONASS</title>
   <style>
- /* Reset & dasar */
     * {
       box-sizing: border-box;
     }
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-image: url('https://drive.google.com/uc?export=download&id=1vSlGqR8_zRGTVKKsmH8sjg6CiQuVVpU7');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  color: #264d00;
-
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('https://drive.google.com/uc?export=download&id=1vSlGqR8_zRGTVKKsmH8sjg6CiQuVVpU7');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #264d00;
     }
-    header { 
-      background: #4caf50; 
-      color: #fff; 
-      padding: 1rem; 
-      text-align: center; 
-      font-size: 1.8rem; 
-      font-weight: bold; }
 
-    /* Navigasi */
+    header {
+      background: #4caf50;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
     nav {
       background: #a3d97a;
       display: flex;
@@ -38,6 +37,7 @@ body {
       padding: 0.5rem 0;
       box-shadow: inset 0 -2px 0 #fff;
     }
+
     nav a {
       color: #264d00;
       text-decoration: none;
@@ -46,25 +46,25 @@ body {
       border-radius: 5px;
       transition: background-color 0.3s ease;
     }
+
     nav a:hover,
     nav a.active {
       background-color: #3e7d13;
       color: white;
     }
 
-    /* Konten utama */
     main {
       max-width: 1000px;
       margin: 2rem auto;
       padding: 0 1rem;
     }
+
     h2 {
       border-bottom: 2px solid #4caf50;
       padding-bottom: 0.3rem;
       margin-bottom: 1rem;
     }
 
-    /* Dashboard ringkas */
     .dashboard-summary {
       display: flex;
       flex-wrap: wrap;
@@ -72,6 +72,7 @@ body {
       justify-content: space-around;
       margin-bottom: 2rem;
     }
+
     .card {
       background: white;
       border-radius: 10px;
@@ -85,12 +86,12 @@ body {
     .card:hover {
       transform: translateY(-5px);
     }
+
     .card h3 {
       margin-bottom: 1rem;
       color: #357a02;
     }
 
-    /* Progress Bar */
     .progress-bar {
       height: 18px;
       background: #d9f1c8;
@@ -99,7 +100,6 @@ body {
       margin-top: 0.5rem;
     }
 
-    /* Progress bar untuk nilai > 0% */
     .progress-fill {
       height: 100%;
       background: #4caf50;
@@ -114,7 +114,6 @@ body {
       user-select: none;
     }
 
-    /* Progress bar khusus 0% */
     .progress-fill.zero {
       width: 100%;
       height: 100%;
@@ -134,7 +133,6 @@ body {
       user-select: none;
     }
 
-    /* Highlight Proyek Terbaru */
     .highlight {
       background: #e6f4d9;
       padding: 1rem 2rem;
@@ -145,7 +143,6 @@ body {
       text-align: center;
     }
 
-    /* Footer */
     footer {
       background: #4caf50;
       color: white;
@@ -155,152 +152,198 @@ body {
       font-size: 0.9rem;
     }
 
-    /* Responsif */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #d9f1c8;
+      min-width: 180px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 1;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+    }
+
+    .dropdown-content a {
+      color: #264d00;
+      padding: 0.6rem 1rem;
+      display: block;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #bde396;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover > a {
+      background-color: #3e7d13;
+      color: white;
+    }
+
+    .roadmap-road {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 1rem 2rem;
+      background: #e8f5e9;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .roadmap-road h2 {
+      text-align: center;
+      color: #2e7d32;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    .roadmap-container {
+      overflow-x: auto;
+      padding-bottom: 1rem;
+    }
+
+    .road {
+      position: relative;
+      display: flex;
+      gap: 4rem;
+      padding: 2rem 0;
+      align-items: center;
+      min-width: 900px;
+    }
+
+    .road::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 1rem;
+      right: 1rem;
+      height: 12px;
+      background: linear-gradient(90deg, #4caf50 33%, #81c784 33%, #81c784 66%, #4caf50 66%);
+      border-radius: 8px;
+      transform: translateY(-50%);
+      box-shadow: inset 0 0 8px #388e3c;
+      z-index: 1;
+    }
+
+    .milestone {
+      position: relative;
+      background: white;
+      padding: 1rem 1.2rem;
+      border-radius: 14px;
+      width: 170px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 10;
+      text-align: center;
+      cursor: default;
+      transition: transform 0.3s ease;
+    }
+
+    .milestone:hover {
+      transform: translateY(-10px);
+    }
+
+    .milestone::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -38px;
+      width: 24px;
+      height: 24px;
+      background: #4caf50;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 0 8px #66bb6a;
+      transform: translateY(-50%);
+      z-index: 11;
+    }
+
+    .milestone:first-child::before {
+      display: none;
+    }
+
+    .year {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #1b5e20;
+      margin-bottom: 0.1rem;
+      letter-spacing: 2px;
+      text-shadow: 0 0 6px #4caf50;
+    }
+
+    .desc {
+      font-size: 0.95rem;
+      color: #33691e;
+      line-height: 1.3;
+    }
+
+    /* Responsive untuk HP */
     @media (max-width: 600px) {
+      header {
+        font-size: 1.4rem;
+        padding: 0.8rem;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
       .dashboard-summary {
         flex-direction: column;
         gap: 1rem;
+        padding: 0 1rem;
       }
-      nav {
+
+      .card {
+        padding: 1rem;
+      }
+
+      .road {
         flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        min-width: unset;
+      }
+
+      .milestone {
+        width: 90%;
+        max-width: 320px;
+      }
+
+      .milestone::before {
+        top: -30px;
+        left: calc(50% - 12px);
+      }
+
+      .road::before {
+        display: none;
+      }
+
+      .year {
+        font-size: 1.6rem;
+      }
+
+      .desc {
+        font-size: 0.9rem;
+      }
+
+      .highlight {
+        padding: 1rem;
+        font-size: 0.9rem;
       }
     }
-
-    /* Dropdown */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #d9f1c8;
-  min-width: 180px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  z-index: 1;
-  border-radius: 6px;
-  margin-top: 0.5rem;
-}
-.dropdown-content a {
-  color: #264d00;
-  padding: 0.6rem 1rem;
-  display: block;
-  text-decoration: none;
-  font-size: 0.95rem;
-}
-.dropdown-content a:hover {
-  background-color: #bde396;
-}
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-.dropdown:hover > a {
-  background-color: #3e7d13;
-  color: white;
-}
-.roadmap-road {
-  max-width: 1000px;
-  margin: 3rem auto;
-  padding: 1rem 2rem;
-  background: #e8f5e9;
-  border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-.roadmap-road h2 {
-  text-align: center;
-  color: #2e7d32;
-  margin-bottom: 2rem;
-  font-weight: 700;
-}
-
-.roadmap-container {
-  overflow-x: auto;
-  padding-bottom: 1rem;
-}
-
-.road {
-  position: relative;
-  display: flex;
-  gap: 4rem;
-  padding: 2rem 0;
-  align-items: center;
-  min-width: 900px;
-}
-
-/* Jalan utama */
-.road::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 1rem;
-  right: 1rem;
-  height: 12px;
-  background: linear-gradient(90deg, #4caf50 33%, #81c784 33%, #81c784 66%, #4caf50 66%);
-  border-radius: 8px;
-  transform: translateY(-50%);
-  box-shadow: inset 0 0 8px #388e3c;
-  z-index: 1;
-}
-
-/* Milestone/titik tahun */
-.milestone {
-  position: relative;
-  background: white;
-  padding: 1rem 1.2rem;
-  border-radius: 14px;
-  width: 170px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  z-index: 10;
-  text-align: center;
-  cursor: default;
-  transition: transform 0.3s ease;
-}
-.milestone:hover {
-  transform: translateY(-10px);
-}
-
-/* Titik jalan kecil di tengah milestone */
-.milestone::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: -38px;
-  width: 24px;
-  height: 24px;
-  background: #4caf50;
-  border-radius: 50%;
-  border: 4px solid white;
-  box-shadow: 0 0 8px #66bb6a;
-  transform: translateY(-50%);
-  z-index: 11;
-}
-
-/* Hilangkan titik sebelum milestone pertama */
-.milestone:first-child::before {
-  display: none;
-}
-
-.year {
-  font-size: 2.2rem;
-  font-weight: 900;
-  color: #1b5e20;
-  margin-bottom: 0.1rem;
-  letter-spacing: 2px;
-  text-shadow: 0 0 6px #4caf50;
-}
-
-.desc {
-  font-size: 0.95rem;
-  color: #33691e;
-  line-height: 1.3;
-}
-
   </style>
 </head>
 <body>
-  <header>
-    MONASS
-  </header>
+  <header>MONASS</header>
 
   <nav>
     <a href="index.html" class="active">Beranda</a>
@@ -316,65 +359,31 @@ body {
       <h2>RENCANA ROADMAP PEMBANGUNAN UPTD PUSKESMAS KOTA SEMARANG TAHUN 2025 - 2029 </h2>
       <div class="roadmap-container">
         <div class="road">
-          <div class="milestone">
-            <div class="year">2025</div>
-            <div class="desc">Pegandan Tahap 2, Krobokan Tahap 2, Genuk Tahap 2, Tlogosari Kulon, Ratu Ratih, Jabungan, Bringin & Pedurungan Kidul</div>
-          </div>
-          <div class="milestone">
-            <div class="year">2026</div>
-            <div class="desc">Tlogosari Kulon Tahap 2 (Rawat Inap), Karanganyar, Cumi, Sendang Mulyo, TANJUNGMAS (Pembangunan Baru)</div>
-          </div>
-          <div class="milestone">
-            <div class="year">2027</div>
-            <div class="desc">Poncol, Srondol, Panjangan & Podorejo</div>
-          </div>
-          <div class="milestone">
-            <div class="year">2028</div>
-            <div class="desc">Miroto, Karang Malang, Siwalan & Tegalsari </div>
-          </div>
-          <div class="milestone">
-            <div class="year">2029</div>
-            <div class="desc">Lebdosari, Lamper Tengah, Ngesrep, Panggung & Muktiharjo Kidul.</div>
-          </div>
+          <div class="milestone"><div class="year">2025</div><div class="desc">Pegandan Tahap 2, Krobokan Tahap 2, Genuk Tahap 2, Tlogosari Kulon, Ratu Ratih, Jabungan, Bringin & Pedurungan Kidul</div></div>
+          <div class="milestone"><div class="year">2026</div><div class="desc">Tlogosari Kulon Tahap 2 (Rawat Inap), Karanganyar, Cumi, Sendang Mulyo, TANJUNGMAS (Pembangunan Baru)</div></div>
+          <div class="milestone"><div class="year">2027</div><div class="desc">Poncol, Srondol, Panjangan & Podorejo</div></div>
+          <div class="milestone"><div class="year">2028</div><div class="desc">Miroto, Karang Malang, Siwalan & Tegalsari</div></div>
+          <div class="milestone"><div class="year">2029</div><div class="desc">Lebdosari, Lamper Tengah, Ngesrep, Panggung & Muktiharjo Kidul.</div></div>
         </div>
       </div>
     </section>
 
     <h2>Dashboard Ringkas</h2>
-    <section class="dashboard-summary" aria-label="Ringkasan progres terbaru">
-      <div class="card">
-        <h3>Progres Pembangunan</h3>
-        <div>0% Belum selesai</div>
-        <div class="progress-bar" aria-label="Progress bar">
-          <div class="progress-fill zero">0%</div>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Ada Proyek</h3>
-        <div>8 Proyek</div>
-      </div>
-      <div class="card">
-        <h3>Ada Proyek</h3>
-        <div>8 Proyek</div>
-      </div>
-      <div class="card">
-        <h3>Ada Proyek</h3>
-        <div>8 Proyek</div>
-      </div>
+    <section class="dashboard-summary">
+      <div class="card"><h3>Progres Pembangunan</h3><div>0% Belum selesai</div><div class="progress-bar"><div class="progress-fill zero">0%</div></div></div>
+      <div class="card"><h3>Ada Proyek</h3><div>8 Proyek</div></div>
+      <div class="card"><h3>Ada Proyek</h3><div>8 Proyek</div></div>
+      <div class="card"><h3>Ada Proyek</h3><div>8 Proyek</div></div>
     </section>
 
-    <!-- Highlight dinamis dari Spreadsheet -->
-    <section class="highlight" aria-label="Highlight proyek terbaru">
+    <section class="highlight">
       <h3>Highlight Proyek Terbaru</h3>
       <div id="highlight-container">Memuat data...</div>
     </section>
   </main>
 
-  <footer>
-    &copy; 2025 MONASS - Dinas Kesehatan Kota Semarang
-  </footer>
+  <footer>&copy; 2025 MONASS - Dinas Kesehatan Kota Semarang</footer>
 
-  <!-- Script progress animasi -->
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       const progressFill = document.querySelector('.progress-fill:not(.zero)');
@@ -385,49 +394,44 @@ body {
         }, 300);
       }
     });
-  </script>
 
-<!-- Tambahkan ini di bagian <script> paling bawah -->
-<script>
-  const CSV_URL = "https://api.allorigins.win/raw?url=" + encodeURIComponent(
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSaRRI_jOcIDb9YUwshEPASmay6rnCSYWO3yPWotEUPfwmvt9s0ynXYfvZTZSE26NUaPa7Xn9IiL_0U/pub?gid=1665135704&single=true&output=csv"
-  );
+    const CSV_URL = "https://api.allorigins.win/raw?url=" + encodeURIComponent(
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vSaRRI_jOcIDb9YUwshEPASmay6rnCSYWO3yPWotEUPfwmvt9s0ynXYfvZTZSE26NUaPa7Xn9IiL_0U/pub?gid=1665135704&single=true&output=csv"
+    );
 
-  function parseCSV(text) {
-    const [headerLine, ...lines] = text.trim().split("\n");
-    const headers = headerLine.split(",").map(h => h.trim());
-    return lines.map(line => {
-      const values = line.split(",").map(v => v.trim());
-      const obj = {};
-      headers.forEach((h, i) => obj[h] = values[i]);
-      return obj;
-    });
-  }
-
-  fetch(CSV_URL)
-    .then(res => res.text())
-    .then(csvText => {
-      const data = parseCSV(csvText);
-      const container = document.getElementById("highlight-container");
-      container.innerHTML = "";
-
-      if (!data || data.length === 0) {
-        container.textContent = "Tidak ada data proyek.";
-        return;
-      }
-
-      data.forEach(item => {
-        const p = document.createElement("p");
-        p.innerHTML = `<strong>${item.Proyek}</strong> - ${item.Status}`;
-        container.appendChild(p);
+    function parseCSV(text) {
+      const [headerLine, ...lines] = text.trim().split("\n");
+      const headers = headerLine.split(",").map(h => h.trim());
+      return lines.map(line => {
+        const values = line.split(",").map(v => v.trim());
+        const obj = {};
+        headers.forEach((h, i) => obj[h] = values[i]);
+        return obj;
       });
-    })
-    .catch(err => {
-      console.error("Gagal mengambil data:", err);
-      document.getElementById("highlight-container").textContent = "Gagal memuat data.";
-    });
-</script>
+    }
 
+    fetch(CSV_URL)
+      .then(res => res.text())
+      .then(csvText => {
+        const data = parseCSV(csvText);
+        const container = document.getElementById("highlight-container");
+        container.innerHTML = "";
+
+        if (!data || data.length === 0) {
+          container.textContent = "Tidak ada data proyek.";
+          return;
+        }
+
+        data.forEach(item => {
+          const p = document.createElement("p");
+          p.innerHTML = `<strong>${item.Proyek}</strong> - ${item.Status}`;
+          container.appendChild(p);
+        });
+      })
+      .catch(err => {
+        console.error("Gagal mengambil data:", err);
+        document.getElementById("highlight-container").textContent = "Gagal memuat data.";
+      });
   </script>
 </body>
 </html>

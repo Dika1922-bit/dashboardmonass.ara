@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MONASS - Berita</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f9fefb;
@@ -39,7 +43,7 @@
       color: #264d00;
       position: absolute;
       left: 1rem;
-      top: 0.5rem;
+      top: 0.6rem;
       cursor: pointer;
     }
 
@@ -57,6 +61,7 @@
       color: #264d00;
       padding: 0.5rem 1rem;
       border-radius: 5px;
+      transition: background-color 0.3s ease;
     }
 
     nav a:hover, nav a.active {
@@ -122,11 +127,16 @@
         flex-direction: column;
         width: 100%;
         text-align: center;
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
 
       nav.show .nav-links {
         display: flex;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: stretch;
       }
     }
   </style>
@@ -154,7 +164,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 <script>
-  const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQUScyRZ0Nxxxxxxx/pub?output=csv'; // Ganti dengan URL CSV Anda
+  const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQUScyRZ0Nxxxxxxx/pub?output=csv'; // Ganti URL sesuai
 
   Papa.parse(CSV_URL, {
     download: true,
@@ -167,6 +177,7 @@
         container.innerHTML = '<p>Belum ada berita tersedia.</p>';
         return;
       }
+
       container.innerHTML = berita.map(item => `
         <div class="berita-item">
           <div class="tanggal">${item.Tanggal || '-'}</div>
@@ -177,7 +188,7 @@
       `).join('');
     },
     error: function(err) {
-      document.getElementById('berita-container').innerHTML = '<p>BELUM ADA BERITA SABAR YA :)</p>';
+      document.getElementById('berita-container').innerHTML = '<p>BELUM ADA BERITA, SABAR YA :)</p>';
       console.error('Kesalahan:', err);
     }
   });
