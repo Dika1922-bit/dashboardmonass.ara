@@ -11,6 +11,7 @@
       color: #264d00;
       margin: 0;
     }
+
     header {
       background-color: #4caf50;
       color: white;
@@ -19,14 +20,37 @@
       font-size: 1.8rem;
       font-weight: bold;
     }
+
     nav {
       background: #a3d97a;
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 1rem;
-      padding: 0.5rem 0;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      position: relative;
     }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #264d00;
+      position: absolute;
+      left: 1rem;
+      top: 0.5rem;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      align-items: center;
+    }
+
     nav a {
       text-decoration: none;
       font-weight: bold;
@@ -34,20 +58,25 @@
       padding: 0.5rem 1rem;
       border-radius: 5px;
     }
+
     nav a:hover, nav a.active {
       background-color: #3e7d13;
       color: white;
     }
+
     main {
       max-width: 900px;
       margin: 2rem auto;
       padding: 1rem;
     }
+
     h2 {
       margin-bottom: 1.5rem;
       border-bottom: 2px solid #4caf50;
       padding-bottom: 0.3rem;
+      font-size: 1.5rem;
     }
+
     .berita-item {
       background: white;
       padding: 1rem;
@@ -55,18 +84,24 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       margin-bottom: 2rem;
     }
+
     .berita-item h3 {
       margin: 0 0 0.5rem 0;
       color: #2e7d32;
+      font-size: 1.2rem;
     }
+
     .tanggal {
       font-size: 0.85rem;
       color: #666;
     }
+
     .isi {
       margin-top: 0.5rem;
       font-size: 0.95rem;
+      line-height: 1.5;
     }
+
     .terkait {
       margin-top: 1rem;
       font-size: 0.85rem;
@@ -76,6 +111,24 @@
       border-left: 4px solid #a5d6a7;
       border-radius: 5px;
     }
+
+    @media (max-width: 600px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        margin-top: 0.5rem;
+      }
+
+      nav.show .nav-links {
+        display: flex;
+      }
+    }
   </style>
 </head>
 <body>
@@ -83,12 +136,15 @@
 <header>MONASS</header>
 
 <nav>
-  <a href="index.html">Beranda</a>
-  <a href="daftar-proyek.html">Daftar Proyek</a>
-  <a href="Visualisasi.html">Visualisasi</a>
-  <a href="berita.html" class="active">Berita</a>
-  <a href="download.html">Download</a>
-  <a href="kontak.html">Kontak</a>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  <div class="nav-links">
+    <a href="index.html">Beranda</a>
+    <a href="daftar-proyek.html">Daftar Proyek</a>
+    <a href="Visualisasi.html">Visualisasi</a>
+    <a href="berita.html" class="active">Berita</a>
+    <a href="download.html">Download</a>
+    <a href="kontak.html">Kontak</a>
+  </div>
 </nav>
 
 <main>
@@ -96,10 +152,9 @@
   <div id="berita-container">Memuat berita...</div>
 </main>
 
-<!-- PapaParse dari CDN untuk parsing CSV lebih baik -->
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 <script>
-  const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQUScyRZ0Nxxxxxxx/pub?output=csv'; // Ganti dengan URL CSV asli Anda
+  const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQUScyRZ0Nxxxxxxx/pub?output=csv'; // Ganti dengan URL CSV Anda
 
   Papa.parse(CSV_URL, {
     download: true,
@@ -108,7 +163,7 @@
     complete: function(results) {
       const berita = results.data;
       const container = document.getElementById('berita-container');
-      if(berita.length === 0) {
+      if (berita.length === 0) {
         container.innerHTML = '<p>Belum ada berita tersedia.</p>';
         return;
       }
@@ -126,6 +181,10 @@
       console.error('Kesalahan:', err);
     }
   });
+
+  function toggleMenu() {
+    document.querySelector('nav').classList.toggle('show');
+  }
 </script>
 
 </body>

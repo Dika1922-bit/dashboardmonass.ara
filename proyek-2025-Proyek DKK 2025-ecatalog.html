@@ -3,11 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MONASS - Proyek E-Catalog 2025</title>
+  <title>MONASS - Proyek 2025 (e-catalog)</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -147,7 +145,7 @@
   </nav>
 
   <main>
-    <h2>Daftar Proyek DKK Tahun 2025 – Metode E-Catalog</h2>
+    <h2>Daftar Proyek RSD Mijen Tahun 2025 – Metode E-Catalog</h2>
     <table id="tabel-proyek">
       <thead>
         <tr>
@@ -171,10 +169,7 @@ const PROXY = "https://api.allorigins.win/raw?url=";
 function formatRupiah(angka) {
   if (!angka || typeof angka !== "string") return angka;
 
-  // Hapus "Rp", spasi, dan titik
   let clean = angka.replace(/Rp|\s|\./g, "");
-
-  // Ganti koma menjadi titik desimal (jika ada)
   clean = clean.replace(",", ".");
 
   const number = parseFloat(clean);
@@ -218,4 +213,3 @@ fetch(PROXY + encodeURIComponent(CSV_URL))
     tbody.innerHTML = "<tr><td colspan='5'>Gagal memuat data dari Google Sheet.</td></tr>";
   });
 </script>
-

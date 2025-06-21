@@ -3,11 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MONASS - Proyek OM 2025</title>
+  <title>MONASS - Proyek 2025 (OM)</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -45,7 +43,6 @@
       background-color: #3e7d13;
       color: white;
     }
-
     .dropdown {
       position: relative;
       display: inline-block;
@@ -83,7 +80,6 @@
       margin-top: 0;
       margin-left: 0.2rem;
     }
-
     main {
       max-width: 1000px;
       margin: 2rem auto;
@@ -100,7 +96,7 @@
     }
     th, td {
       border: 1px solid #4caf50;
-      padding: 1rem;
+      padding: 1rem 1rem;
       text-align: left;
     }
     th {
@@ -149,7 +145,7 @@
   </nav>
 
   <main>
-    <h2>Daftar Proyek DKK Tahun 2025 – Metode Opereted Maintenance (OM)</h2>
+    <h2>Daftar Proyek DKK Tahun 2025 – Metode Metode Opereted Maintenance (OM)</h2>
     <table id="tabel-proyek">
       <thead>
         <tr>
@@ -173,10 +169,7 @@ const PROXY = "https://api.allorigins.win/raw?url=";
 function formatRupiah(angka) {
   if (!angka || typeof angka !== "string") return angka;
 
-  // Hapus "Rp", spasi, dan titik
   let clean = angka.replace(/Rp|\s|\./g, "");
-
-  // Ganti koma menjadi titik desimal (jika ada)
   clean = clean.replace(",", ".");
 
   const number = parseFloat(clean);

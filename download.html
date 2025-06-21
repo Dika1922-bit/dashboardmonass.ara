@@ -11,6 +11,7 @@
       background: #f9fefb;
       color: #264d00;
     }
+
     header {
       background-color: #4caf50;
       color: white;
@@ -20,14 +21,37 @@
       font-weight: 700;
       box-shadow: 0 3px 6px rgba(0,0,0,0.2);
     }
+
     nav {
       background: #a3d97a;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 1rem;
-      padding: 0.5rem 0;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      position: relative;
     }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #264d00;
+      position: absolute;
+      left: 1rem;
+      top: 0.5rem;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      align-items: center;
+    }
+
     nav a {
       color: #264d00;
       text-decoration: none;
@@ -35,24 +59,31 @@
       padding: 0.5rem 1rem;
       border-radius: 5px;
     }
-    nav a:hover, nav a.active {
+
+    nav a:hover,
+    nav a.active {
       background-color: #3e7d13;
       color: white;
     }
+
     main {
       max-width: 900px;
       margin: 2rem auto;
       padding: 1rem;
     }
+
     h2 {
       border-bottom: 2px solid #4caf50;
       padding-bottom: 0.3rem;
       margin-bottom: 1.5rem;
+      font-size: 1.5rem;
     }
+
     ul.download-list {
       list-style-type: none;
       padding: 0;
     }
+
     ul.download-list li {
       background: white;
       margin-bottom: 1rem;
@@ -62,7 +93,23 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
+
+    .file-info {
+      max-width: 70%;
+    }
+
+    .file-name {
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .file-description {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
     ul.download-list li a {
       color: #2e7d32;
       font-weight: 600;
@@ -72,20 +119,43 @@
       border-radius: 5px;
       transition: background-color 0.3s, color 0.3s;
     }
+
     ul.download-list li a:hover {
       background-color: #4caf50;
       color: white;
     }
-    .file-info {
-      max-width: 70%;
-    }
-    .file-name {
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-    }
-    .file-description {
-      font-size: 0.9rem;
-      color: #555;
+
+    @media (max-width: 600px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        margin-top: 0.5rem;
+      }
+
+      nav.show .nav-links {
+        display: flex;
+      }
+
+      ul.download-list li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      ul.download-list li a {
+        margin-top: 0.5rem;
+        width: 100%;
+        text-align: center;
+      }
+
+      .file-info {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
@@ -94,12 +164,15 @@
 <header>MONASS</header>
 
 <nav>
-  <a href="index.html">Beranda</a>
-  <a href="daftar-proyek.html">Daftar Proyek</a>
-  <a href="Visualisasi.html">Visualisasi</a>
-  <a href="berita.html">Berita</a>
-  <a href="download.html" class="active">Download</a>
-  <a href="kontak.html">Kontak</a>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  <div class="nav-links">
+    <a href="index.html">Beranda</a>
+    <a href="daftar-proyek.html">Daftar Proyek</a>
+    <a href="Visualisasi.html">Visualisasi</a>
+    <a href="berita.html">Berita</a>
+    <a href="download.html" class="active">Download</a>
+    <a href="kontak.html">Kontak</a>
+  </div>
 </nav>
 
 <main>
@@ -111,17 +184,23 @@
         <div class="file-name">Pembangunan UPTD Puskesmas Tlogosari Kulon</div>
         <div class="file-description">Laporan lengkap Pembangunan UPTD Puskesmas Tlogosari Kulon.</div>
       </div>
-      <a href="https://drive.google.com/drive/folders/1Xj0IxgHccWQAw9u_BChPgsby2tbV1pIl?usp=drive_link" download>Unduh</a>
+      <a href="https://drive.google.com/drive/folders/1Xj0IxgHccWQAw9u_BChPgsby2tbV1pIl?usp=drive_link" target="_blank">Unduh</a>
     </li>
     <li>
       <div class="file-info">
         <div class="file-name">Pembangunan Pustu Beringin</div>
         <div class="file-description">Laporan lengkap Pembangunan Pustu Beringin</div>
       </div>
-      <a href="https://drive.google.com/drive/folders/1WUKsU6AnNCuAqV9HrXFdfr1jCvHCMQQX?usp=drive_link" download>Unduh</a>
+      <a href="https://drive.google.com/drive/folders/1WUKsU6AnNCuAqV9HrXFdfr1jCvHCMQQX?usp=drive_link" target="_blank">Unduh</a>
     </li>
   </ul>
 </main>
+
+<script>
+  function toggleMenu() {
+    document.querySelector('nav').classList.toggle('show');
+  }
+</script>
 
 </body>
 </html>
