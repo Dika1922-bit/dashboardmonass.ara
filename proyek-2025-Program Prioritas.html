@@ -23,14 +23,14 @@
       font-weight: 700;
       box-shadow: 0 3px 6px rgba(0,0,0,0.2);
     }
-
     nav {
       background: #a3d97a;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      padding: 0.7rem 1rem;
+      gap: 1rem;
+      padding: 0.5rem 0;
+      box-shadow: inset 0 -2px 0 #fff;
     }
     nav a {
       color: #264d00;
@@ -45,72 +45,69 @@
       background-color: #3e7d13;
       color: white;
     }
-
-    /* Dropdown Styling */
+    footer {
+      background: #4caf50;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
     .dropdown {
       position: relative;
-    }
-    .dropdown > a::after {
-      content: " ▾";
+      display: inline-block;
     }
     .dropdown-content {
       display: none;
       position: absolute;
       background-color: #d9f1c8;
-      border-radius: 6px;
       min-width: 180px;
-      z-index: 999;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 1;
+      border-radius: 6px;
+      margin-top: 0.5rem;
     }
     .dropdown-content a {
-      display: block;
-      padding: 0.6rem 1rem;
       color: #264d00;
+      padding: 0.6rem 1rem;
+      display: block;
       text-decoration: none;
       font-size: 0.95rem;
     }
     .dropdown-content a:hover {
       background-color: #bde396;
     }
-    .dropdown:hover .dropdown-content,
-    .dropdown:focus-within .dropdown-content {
+    .dropdown:hover .dropdown-content {
       display: block;
     }
-
+    .dropdown:hover > a {
+      background-color: #3e7d13;
+      color: white;
+    }
     .dropdown-content.right {
-      position: absolute;
       top: 0;
       left: 100%;
+      margin-top: 0;
       margin-left: 0.2rem;
     }
 
     main {
       max-width: 1000px;
       margin: 2rem auto;
-      padding: 0 1rem;
     }
-
     h2 {
       border-bottom: 2px solid #4caf50;
       padding-bottom: 0.3rem;
       margin-bottom: 1rem;
-      font-size: 1.5rem;
-      text-align: center;
     }
-
-    .table-container {
-      overflow-x: auto;
-    }
-
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 1rem;
-      min-width: 600px;
     }
     th, td {
       border: 1px solid #4caf50;
-      padding: 0.8rem;
+      padding: 1rem;
       text-align: left;
     }
     th {
@@ -120,35 +117,30 @@
     tr:nth-child(even) {
       background-color: #e6f4d9;
     }
-
-    @media (max-width: 600px) {
-      nav {
-        flex-direction: column;
-        align-items: center;
-      }
-      nav a {
-        width: 100%;
-        text-align: center;
-      }
-      header {
-        font-size: 1.4rem;
-      }
-    }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 </head>
 <body>
   <header>MONASS</header>
-
   <nav>
     <a href="index.html">Beranda</a>
-    <div class="dropdown" tabindex="0">
-      <a href="daftar-proyek.html" class="active">Daftar Proyek</a>
+
+    <div class="dropdown">
+      <a href="daftar-proyek.html" class="active">Daftar Proyek ▾</a>
       <div class="dropdown-content">
-        <div class="dropdown" tabindex="0">
-          <a href="proyek-2025.html">Tahun 2025</a>
+        <div class="dropdown">
+          <a href="proyek-2025.html">Tahun 2025 ▸</a>
           <div class="dropdown-content right">
             <a href="proyek-2025-Program Prioritas.html" class="active">Program Prioritas</a>
-            <a href="proyek-2025-Proyek DKK 2025.html">Proyek DKK 2025</a>
+            <div class="dropdown">
+              <a href="proyek-2025-Proyek DKK 2025.html">Proyek DKK 2025 ▸</a>
+              <div class="dropdown-content right">
+                <a href="proyek-2025-Proyek DKK 2025-pl.html">PL</a>
+                <a href="proyek-2025-Proyek DKK 2025-lelang.html">Lelang</a>
+                <a href="proyek-2025-Proyek DKK 2025-om.html">OM</a>
+                <a href="proyek-2025-Proyek DKK 2025-ecatalog.html">E-Catalog</a>
+              </div>
+            </div>
             <a href="proyek-2025-Proyek RSD Mijen.html">Proyek RSD Mijen</a>
           </div>
         </div>
@@ -158,6 +150,7 @@
         <a href="proyek-2029.html">Tahun 2029</a>
       </div>
     </div>
+
     <a href="Visualisasi.html">Visualisasi</a>
     <a href="berita.html">Berita</a>
     <a href="download.html">Download</a>
@@ -165,28 +158,25 @@
   </nav>
 
   <main>
-    <h2>Daftar Proyek Tahun 2025 – Program Prioritas</h2>
-    <div class="table-container">
-      <table id="tabel-proyek">
-        <thead>
-          <tr>
-            <th>OPD/KEGIATAN</th>
-            <th>Rencana Pelaksanaan</th>
-            <th>Anggaran</th>
-            <th>Sumber Anggaran</th>
-            <th>Keterangan</th>
-          </tr>
-        </thead>
-        <tbody id="data-tabel">
-          <tr><td colspan="5">Memuat data...</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <h2>Daftar Program Prioritas Tahun 2025</h2>
+    <table id="tabel-prioritas">
+      <thead>
+        <tr>
+          <th>Program/Kegiatan</th>
+          <th>Pelaksana</th>
+          <th>Anggaran</th>
+          <th>Sumber Dana</th>
+          <th>Keterangan</th>
+        </tr>
+      </thead>
+      <tbody id="data-prioritas">
+        <tr><td colspan="5">Memuat data...</td></tr>
+      </tbody>
+    </table>
   </main>
-
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <footer>&copy; 2025 MONASS - Pemerintah Kota Semarang</footer>
   <script>
-    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSaRRI_jOcIDb9YUwshEPASmay6rnCSYWO3yPWotEUPfwmvt9s0ynXYfvZTZSE26NUaPa7Xn9IiL_0U/pub?gid=1599585363&single=true&output=csv";
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSaRRI_jOcIDb9YUwshEPASmay6rnCSYWO3yPWotEUPfwmvt9s0ynXYfvZTZSE26NUaPa7Xn9IiL_0U/pub?gid=1599585363&single=true&output=csv"; // GANTI URL CSV INI
     const PROXY = "https://api.allorigins.win/raw?url=";
 
     function formatRupiah(angka) {
@@ -197,23 +187,26 @@
       return number.toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR',
-        minimumFractionDigits: 0
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
       });
     }
 
     fetch(PROXY + encodeURIComponent(CSV_URL))
       .then(response => {
-        if (!response.ok) throw new Error("Network error");
+        if (!response.ok) throw new Error("Network response not OK");
         return response.text();
       })
       .then(csvText => {
         const parsed = Papa.parse(csvText, { header: false });
         const rows = parsed.data;
-        const tbody = document.getElementById("data-tabel");
+        const tbody = document.getElementById("data-prioritas");
         tbody.innerHTML = "";
+
         for (let i = 1; i < rows.length; i++) {
           const cols = rows[i];
           if (cols.length < 5 || cols.every(col => col.trim() === "")) continue;
+
           const tr = document.createElement("tr");
           for (let j = 0; j < 5; j++) {
             const td = document.createElement("td");
@@ -224,8 +217,9 @@
         }
       })
       .catch(error => {
-        console.error("Gagal memuat CSV:", error);
-        document.getElementById("data-tabel").innerHTML = "<tr><td colspan='5'>Gagal memuat data.</td></tr>";
+        console.error("Error fetching or parsing CSV:", error);
+        document.getElementById("data-prioritas").innerHTML =
+          "<tr><td colspan='5'>Gagal memuat data dari Google Sheet.</td></tr>";
       });
   </script>
 </body>
