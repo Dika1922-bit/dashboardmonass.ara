@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MONASS - Daftar Proyek</title>
   <meta name="description" content="Daftar Proyek Fisik Dinas Kesehatan Kota Semarang Tahun 2025–2029. Data ditampilkan secara otomatis dari Google Sheets." />
@@ -24,7 +25,6 @@
       font-size: 1.8rem;
       font-weight: bold;
     }
-
     nav.main-nav {
       background: #a3d97a;
       display: flex;
@@ -35,7 +35,6 @@
       box-shadow: inset 0 -2px 0 #fff;
       flex-direction: row;
     }
-
     .menu-toggle {
       display: none;
       font-size: 1.5rem;
@@ -47,7 +46,6 @@
       top: 0.6rem;
       cursor: pointer;
     }
-
     .nav-links {
       display: flex;
       gap: 1rem;
@@ -55,7 +53,6 @@
       justify-content: center;
       align-items: center;
     }
-
     nav a, .dropdown-toggle {
       text-decoration: none;
       color: #264d00;
@@ -65,19 +62,16 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-
     nav a:hover,
     nav a.active,
     .dropdown-toggle:hover {
       background: #3e7d13;
       color: #fff;
     }
-
     .dropdown {
       position: relative;
       display: inline-block;
     }
-
     .dropdown-content {
       display: none;
       position: absolute;
@@ -88,11 +82,9 @@
       border-radius: 6px;
       margin-top: 0.5rem;
     }
-
     .dropdown:hover .dropdown-content {
       display: block;
     }
-
     .dropdown-content a {
       color: #264d00;
       padding: 0.6rem 1rem;
@@ -100,56 +92,55 @@
       text-decoration: none;
       font-size: 0.95rem;
     }
-
     .dropdown-content a:hover {
       background-color: #bde396;
     }
-
-    .dropdown:hover > a {
-      background-color: #3e7d13;
-      color: white;
-    }
-
     main {
       max-width: 1000px;
       margin: 2rem auto;
-      padding: 0 1rem;
+      padding: 0 1rem;;
     }
-
-    h2 {
-      border-bottom: 2px solid #4caf50;
-      padding-bottom: 0.3rem;
+    .search-box {
       margin-bottom: 1rem;
+      text-align: right;
     }
-
+    .search-box input {
+      padding: 0.4rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 100%;
+      max-width: 300px;
+    }
+    .project-count {
+      margin-bottom: 0.5rem;
+      font-style: italic;
+      color: #555;
+      font-size: 0.95rem;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 1rem;
     }
-
     th, td {
       border: 1px solid #4caf50;
       padding: 1rem;
       text-align: left;
     }
-
     th {
       background-color: #a3d97a;
       color: #264d00;
     }
-
     tr:nth-child(even) {
       background-color: #e6f4d9;
     }
-
     .loader {
       text-align: center;
       padding: 2rem;
       font-style: italic;
       color: #999;
     }
-
     footer {
       background: #4caf50;
       color: white;
@@ -158,7 +149,6 @@
       margin-top: 3rem;
       font-size: 0.9rem;
     }
-
     @media (max-width: 768px) {
       table, thead, tbody, th, td, tr {
         display: block;
@@ -186,36 +176,89 @@
       td:nth-of-type(5)::before { content: "KONTRAKTOR"; }
       td:nth-of-type(6)::before { content: "KONSULTAN PENGAWAS"; }
       td:nth-of-type(7)::before { content: "TAYANG DI LPSE"; }
-      td:nth-of-type(8)::before { content: "KET"; }
+      td:nth-of-type(8)::before { content: "SPMK"; }
+      td:nth-of-type(9)::before { content: "KET"; }
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #f9fefb;
+      color: #264d00;
+      margin: 0;
     }
 
-    @media (max-width: 600px) {
-      .menu-toggle {
-        display: block;
-      }
+    header {
+      background: #4caf50;
+      padding: 1rem;
+      text-align: center;
+      font-weight: bold;
+      color: white;
+      font-size: 1.8rem;
+    }
 
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        text-align: center;
-        margin-top: 1rem;
-      }
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
 
-      nav.main-nav.show .nav-links {
-        display: flex;
-      }
+    h2 {
+      border-bottom: 3px solid #4caf50;
+      padding-bottom: 0.4rem;
+      margin-bottom: 1.5rem;
+      display: block;
+      width: 100%;
+    }
 
-      nav.main-nav {
-        flex-direction: column;
-        align-items: stretch;
-      }
+    .search-box {
+      text-align: right;
+      margin-bottom: 0.8rem;
+    }
 
-      .dropdown-content {
-        position: static;
-        box-shadow: none;
-        margin-top: 0.3rem;
-      }
+    .search-box input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      width: 280px;
+    }
+
+    .project-count {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #4caf50;
+      padding: 0.8rem;
+      text-align: left;
+    }
+
+    th {
+      background: #a3d97a;
+    }
+
+    tr:nth-child(even) {
+      background: #e6f4d9;
+    }
+
+    td:nth-child(8),
+    th:nth-child(8) {
+      min-width: 120px;
+      width: 140px;
+    }
+
+    footer {
+      background: #4caf50;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -244,6 +287,12 @@
 
   <main>
     <h2>Daftar Proyek Tahun 2025–2029</h2>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Cari berdasarkan OPD/Kegiatan..." onkeyup="filterTable()" />
+    </div>
+    <div id="projectCount" class="project-count">Memuat data proyek...</div>
+
     <table>
       <thead>
         <tr>
@@ -254,11 +303,12 @@
           <th>KONTRAKTOR</th>
           <th>KONSULTAN PENGAWAS</th>
           <th>TAYANG DI LPSE</th>
+          <th>SPMK</th>
           <th>KET</th>
         </tr>
       </thead>
       <tbody id="data-tabel">
-        <tr><td colspan="8" class="loader">Memuat data proyek...</td></tr>
+        <tr><td colspan="9" class="loader">Memuat data proyek...</td></tr>
       </tbody>
     </table>
   </main>
@@ -273,7 +323,7 @@
     }
 
     const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSaRRI_jOcIDb9YUwshEPASmay6rnCSYWO3yPWotEUPfwmvt9s0ynXYfvZTZSE26NUaPa7Xn9IiL_0U/pub?gid=1244754563&single=true&output=csv";
-    const PROXY = "https://api.allorigins.win/raw?url=";
+    const PROXY ="https://api.allorigins.win/raw?url=";
 
     function formatRupiah(angka) {
       if (!angka || typeof angka !== "string") return angka;
@@ -288,34 +338,54 @@
       });
     }
 
+    function filterTable() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const rows = document.querySelectorAll("#data-tabel tr");
+      let visibleCount = 0;
+      rows.forEach(row => {
+        const firstCol = row.cells[0]?.textContent.toLowerCase() || "";
+        if (firstCol.includes(input)) {
+          row.style.display = "";
+          visibleCount++;
+        } else {
+          row.style.display = "none";
+        }
+      });
+      document.getElementById("projectCount").textContent = `${visibleCount} proyek ditampilkan.`;
+    }
+
     fetch(PROXY + encodeURIComponent(CSV_URL))
       .then(response => {
-        if (!response.ok) throw new Error("Network response not OK");
+        if (!response.ok) throw new Error("Gagal memuat dari proxy.");
         return response.text();
       })
       .then(csvText => {
         const parsed = Papa.parse(csvText, { header: false });
         const rows = parsed.data;
         const tbody = document.getElementById("data-tabel");
+        const countLabel = document.getElementById("projectCount");
         tbody.innerHTML = "";
+        let count = 0;
 
         for (let i = 1; i < rows.length; i++) {
           const cols = rows[i];
-          if (cols.length < 8 || cols.every(col => col.trim() === "")) continue;
-
+          if (cols.length < 9 || cols.every(col => col.trim() === "")) continue;
           const tr = document.createElement("tr");
-          for (let j = 0; j < 8; j++) {
+          for (let j = 0; j < 9; j++) {
             const td = document.createElement("td");
             td.textContent = (j === 1) ? formatRupiah(cols[j]) : cols[j];
             tr.appendChild(td);
           }
           tbody.appendChild(tr);
+          count++;
         }
+        countLabel.textContent = `${count} proyek ditampilkan.`;
       })
       .catch(error => {
-        console.error("Error fetching or parsing CSV:", error);
-        const tbody = document.getElementById("data-tabel");
-        tbody.innerHTML = "<tr><td colspan='8'>Gagal memuat data dari Google Sheet.</td></tr>";
+        console.error("Gagal memuat data:", error);
+        document.getElementById("data-tabel").innerHTML =
+          "<tr><td colspan='9'>Gagal memuat data dari Google Sheets.</td></tr>";
+        document.getElementById("projectCount").textContent = "Gagal memuat data proyek.";
       });
   </script>
 </body>
